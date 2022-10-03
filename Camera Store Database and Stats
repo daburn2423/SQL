@@ -1,0 +1,21 @@
+CREATE TABLE camera_store (id INTEGER PRIMARY KEY, name TEXT, price INTEGER, brand TEXT, rating INTEGER);
+
+INSERT INTO camera_store VALUES 
+(1, "A7iii", 3000, "Sony", 5 ),
+(2, "A7IV", 3500, "Sony", 5),
+(3, "A6300", 2500, "Sony", 4),
+(4, "A6500", 2800, "Sony", 4),
+(5, "A6000", 2000, "Sony", 4),
+(6, "X100V", 1400, "Fuji", 5),
+(7, "X100F", 1100, "Fuji", 4),
+(8, "FX3", 4000, "Sony", 5),
+(9, "R5", 3800, "Canon", 5),
+(10, "R7", 4500, "Canon", 4),
+(11, "R3", 2800, "Canon", 3),
+(12, "D100", 2500, "Nikon", 3),
+(13, "FS7", 5000, "Sony", 5),
+(14, "FX9", 7500, "Sony", 5),
+(15, "D300", 3000, "Nikon", 4);
+
+--Display the database ordered by price
+Select * FROM camera_store ORDER BY price;
