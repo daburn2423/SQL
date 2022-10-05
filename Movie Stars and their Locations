@@ -1,0 +1,25 @@
+CREATE TABLE movie_stars (id INTEGER PRIMARY KEY, fullname TEXT, age INTEGER, last_film TEXT, annual_salary INTEGER);
+
+INSERT INTO movie_stars VALUES (1, "Daniel Craig", 54, "Knives Out", 100000000);
+INSERT INTO movie_stars VALUES (2, "Dwayne Johnson", 50, "Black Adam", 50000000);
+INSERT INTO movie_stars VALUES (3, "Will Smith", 54, "King Richard", 40000000);
+INSERT INTO movie_stars VALUES (4, "Denzel Washington", 67, "The Equalizer", 40000000);
+INSERT INTO movie_stars VALUES (5, "Leonardo DiCaprio", 47, "Don't Look Up", 30000000);
+INSERT INTO movie_stars VALUES (6, "Jennifer Lawrence", 32, "Don't Look Up", 25000000);
+INSERT INTO movie_stars VALUES (7, "Mark Wahlberg", 51, "Father Stu", 30000000);
+INSERT INTO movie_stars VALUES (8, "Julia Roberts", 54, "Ticket to Paradise", 25000000);
+
+CREATE TABLE movie_stars_locations (id INTEGER PRIMARY KEY, fullname TEXT, hometown TEXT,residence TEXT);
+
+INSERT INTO movie_stars_locations VALUES (1, "Daniel Craig", "Chester", "New York City");
+INSERT INTO movie_stars_locations VALUES (2, "Dwayne Johnson", "Hayward", "Los Angeles");
+INSERT INTO movie_stars_locations VALUES (3, "Will Smith", "Philadelphia", "Los Angeles");
+INSERT INTO movie_stars_locations VALUES (4, "Denzel Washington", "Mount Vernon", "Los Angeles");
+INSERT INTO movie_stars_locations VALUES (5, "Leonardo DiCaprio", "Los Angeles", "Los Angeles");
+INSERT INTO movie_stars_locations VALUES (6, "Jennifer Lawrence", "Indian Hills", "Los Angeles");
+
+-- Selecting the movie stars, their age, their hometown, and their city of residence
+SELECT movie_stars.fullname, movie_stars.age, movie_stars_locations.hometown, movie_stars_locations.residence
+    FROM movie_stars
+    JOIN movie_stars_locations
+    ON movie_stars.fullname = movie_stars_locations.fullname;
