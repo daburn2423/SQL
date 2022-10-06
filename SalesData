@@ -29,3 +29,42 @@ SELECT COUNT(acctnum),AVG(Quantity * price) FROM customers cust
 LEFT JOIN FebSales feb
 ON cust.order_id = feb.orderID
 WHERE quantity > 2;
+
+--#8 List all the products sold in Los Angeles in February, and include how many of each were sold.
+SELECT Product, SUM(quantity)
+FROM BIT_DB.FebSales
+WHERE location like '%Los Angeles%'
+GROUP BY Product;
+
+--Which locations in New York received at least 3 orders in January, and how many orders did they each receive?
+SELECT distinct location, COUNT(orderID)
+FROM BIT_DB.JanSales
+WHERE location like '%NY%'
+GROUP BY location
+HAVING COUNT(orderID) >2;
+
+--How many of each type of headphone were sold in February?
+SELECT sum(Quantity) as quantity,
+Product
+FROM BIT_DB.FebSales 
+WHERE Product like '%Headphones%'
+GROUP BY Product;
+
+--What was the average amount spent per account in February?
+SELECT SUM(price*Quantity)/COUNT(acctnum)
+FROM FebSales
+LEFT JOIN customers
+ON Febsales.orderID = customers.order_id;
+
+--What was the average quantity of products purchased per account in February?
+SELECT SUM(Quantity)/COUNT(acctnum)
+FROM FebSales
+LEFT JOIN customers
+ON Febsales.orderID = customers.order_id;
+
+--Which product brought in the most revenue in January and how much revenue did it bring in total?
+SELECT distinct Product, SUM(quantity * price)
+FROM JanSales
+GROUP BY Product
+ORDER BY SUM(quantity * price) desc
+LIMIT 1;
