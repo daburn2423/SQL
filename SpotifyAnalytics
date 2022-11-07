@@ -61,3 +61,17 @@ LIMIT 20;
 
 --Then I selected the average duration and tempo of the songs in the Top 50
 SELECT avg(duration_ms), avg(tempo) FROM BIT_DB.SpotifyData;
+
+--Then I used a common table expression to identify top stars based on average popularity
+WITH popularity_average_CTE AS (
+SELECT s.artist_name,
+AVG(s.popularity) AS average_popularity
+FROM SpotifyData s 
+GROUP BY s.artist_name
+)
+ 
+SELECT  artist_name,
+        average_popularity,
+        'Top Star' AS tag
+FROM popularity_average_CTE
+WHERE average_popularity>=90;
